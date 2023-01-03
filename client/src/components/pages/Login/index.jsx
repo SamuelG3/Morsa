@@ -57,6 +57,7 @@ const Login = () => {
             <button type="submit" className={styles.green_btn}>
               Login
             </button>
+            <a href="">Esqueceu sua senha?</a>
           </form>
         </div>
         <div className={styles.right}>

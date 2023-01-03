@@ -1,0 +1,10 @@
+img {
+  width: 40px;
+  margin-left: 5px;
+}
+
+@media (max-width: 479px) {
+  img {
+    width: 1230px;
+  }
+}

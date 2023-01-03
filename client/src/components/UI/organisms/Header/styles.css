@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Lalezar&display=swap");
+
+:root {
+  --main-color: #0fbcf9;
+  --secondary-color: #064b64;
+  --dark-color: #171d1c;
+  --light-gray: #dbdbdb;
+}
+
+.Navbar {
+  background-color: #fff;
+  border-bottom: 0.5px solid #d1d1d1;
+}
+
+#NavbarBrand {
+  font-family: "Lalezar" !important;
+  font-size: 2rem !important;
+  color: #000 !important;
+}
+
+#divider {
+  border-left: 1px solid #b8b8b8;
+  width: 1px;
+  height: 50px;
+  margin: 0 15px;
+
+  top: 10px;
+}
+
+.bi {
+  font-size: 1.1rem !important;
+}
+
+/* @media (min-width: 62em) {
+  .Navbar {
+    height: 12vh;
+  }
+} */
+
+@media (max-width: 62em) {
+  #navIcons {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  #userMenu {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: left;
+  }
+}
+.dropdownItem .bi {
+  margin-right: 1rem;
+}
+
+.dropdownItem:hover,
+.dropdownItem:hover .bi {
+  color: var(--main-color) !important;
+}
+
+.navComp:hover,
+.navComp:hover .bi {
+  color: var(--main-color) !important;
+}
+
+.topbar-divider {
+  width: 0;
+  border-right: 1px solid #e3e6f0;
+  height: calc(4.375rem - 2rem);
+  margin: auto 1rem;
+}
+
+@media (max-width: 479px) {
+  #divider {
+    display: none;
+  }
+}
