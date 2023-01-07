@@ -27,8 +27,10 @@ export default function UserMenu({ direction, ...args }) {
     <div className="d-flex">
       <Dropdown isOpen={dropdownOpen} onClick={toggle} direction={direction}>
         <DropdownToggle color="none">
-          <div id="userMenu" class="navComp">
-            <span id="userName">Ada Wong </span>
+          <div id="userMenu" class="navLink">
+            <span id="userName" className="sm-hide">
+              Ada Wong{" "}
+            </span>
             <img src={userProfile} alt="UserName" roundedCircle />
           </div>
         </DropdownToggle>

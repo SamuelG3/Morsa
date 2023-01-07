@@ -8,3 +8,28 @@ img {
     width: 1230px;
   }
 }
+
+@media (max-width: 62em) {
+  #navIcons {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  #userMenu {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: left;
+  }
+}
+
+.dropdownItem:hover,
+.dropdownItem:hover .bi {
+  color: var(--main-color) !important;
+}
+
+@media (max-width: 62rem) {
+  .sm-hide {
+    display: none !important;
+  }
+}
