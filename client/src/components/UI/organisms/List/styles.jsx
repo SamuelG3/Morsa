@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 0 15px;
-  height: 100%;
+  height: 85%;
   flex: 0 0 320px;
   opacity: ${(props) => (props.done ? 0.5 : 1)};
 
@@ -32,7 +32,17 @@ export const Container = styled.div`
     }
   }
 
+  #ListHeader {
+    background: #fff;
+    padding: 25px 10px;
+    border-top: 3px solid purple;
+    border-top-left-radius: 5px;
+    position: static;
+  }
+
   ul {
     margin-top: 30px;
+    height: 100%;
+    overflow-y: scroll;
   }
 `;

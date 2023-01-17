@@ -1,16 +1,23 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-
-
   * {
     margin: 0;
     padding: 0;
     outline: 0;
     box-sizing: border-box;
   }
+  :root {
+    --main-color: #0fbcf9;
+    --secondary-color: #064b64;
+    --dark-color: #171d1c;
+    --light-gray: #dbdbdb;
+    --light-blue: #DCF0FC;
+    --mid-blue: #87A4B5;
+  }
+  
   html, body, #root {
-    height: 100%;
+    height: 100vh;
   }
   body {
     font: 14px 'Roboto', sans-serif;
@@ -21,4 +28,18 @@ export default createGlobalStyle`
   ul {
     list-style: none;
   }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 `;

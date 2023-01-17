@@ -1,0 +1,15 @@
+.KanbanPage {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+}
+
+#kanbanNavbar p {
+  color: grey;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+#kanbanNavbar p:hover {
+  color: var(--main-color);
+}

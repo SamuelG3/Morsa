@@ -6,7 +6,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Button,
 } from "reactstrap";
 
 import userProfile from "../../../../images/undraw_profile.png";
@@ -31,7 +30,7 @@ export default function UserMenu({ direction, ...args }) {
             <span id="userName" className="sm-hide">
               Ada Wong{" "}
             </span>
-            <img src={userProfile} alt="UserName" roundedCircle />
+            <img src={userProfile} alt="UserName" />
           </div>
         </DropdownToggle>
         <DropdownMenu {...args} end="true" style={{ width: "280px" }}>
@@ -39,7 +38,9 @@ export default function UserMenu({ direction, ...args }) {
             <strong>Ada Wong</strong>
           </DropdownItem>
           <DropdownItem header>ada.wong@gmail.com</DropdownItem>
-          <DropdownItem>Preferências da conta</DropdownItem>
+          <DropdownItem href="/user/id/edit">
+            Preferências da conta
+          </DropdownItem>
 
           <DropdownItem divider />
           <DropdownItem>Relatórios da empresa</DropdownItem>
