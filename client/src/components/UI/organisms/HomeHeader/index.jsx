@@ -30,7 +30,7 @@ export default function HomeHeader() {
             </Link>
           </li>
           <li class="nav-item mx-auto">
-            <Link to="./login" class="nav-link special-btn" aria-current="page">
+            <Link to="/login" class="nav-link special-btn" aria-current="page">
               Já tem uma conta?
             </Link>
           </li>

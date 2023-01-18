@@ -6,6 +6,7 @@ import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import Members from "./components/pages/Members";
 import UserPage from "./components/pages/UserPage";
+import UserHome from "./components/pages/UserHome";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -16,6 +17,7 @@ function App() {
         {user && <Route path="/" exact element={<Main />} />}
         {user && <Route path="/members" exact element={<Members />} />}
         {user && <Route path="/user/id/edit" exact element={<UserPage />} />}
+        {user && <Route path="/organization/id" exact element={<UserHome />} />}
 
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/login" exact element={<Login />} />
@@ -27,6 +29,10 @@ function App() {
           element={<Navigate replace to="/signup" />}
         />
         <Route path="/members" element={<Navigate replace to="/signup" />} />
+        <Route
+          path="/organization/id"
+          element={<Navigate replace to="/home" />}
+        />
       </Routes>
       <GlobalStyle />
     </>

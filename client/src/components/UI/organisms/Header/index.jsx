@@ -23,7 +23,7 @@ function Header(args) {
     <Container>
       <div className="navDiv">
         <Navbar className="Navbar" expand="md">
-          <NavbarBrand id="NavbarBrand" href="/">
+          <NavbarBrand id="NavbarBrand" href="/organization/id">
             Morsa
           </NavbarBrand>
           <div class="d-flex align-items-center">
