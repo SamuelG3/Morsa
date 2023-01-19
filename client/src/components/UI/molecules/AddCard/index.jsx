@@ -22,7 +22,7 @@ class AddCard extends React.Component {
       <>
         <div id="novaDatabase" class="addNewCard" onClick={this.toggle}>
           <i class="bi bi-plus-square-fill"></i>
-          <p>Nova Database</p>
+          <p>Novo Kanban</p>
         </div>
 
         <Modal
@@ -30,22 +30,21 @@ class AddCard extends React.Component {
           toggle={this.toggle}
           className={this.props.className}
         >
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggle}>
+            Vamos criar um Kanban &#128516;
+          </ModalHeader>
           <ModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            <b>Nome do Kanban</b>
+            <p className="small">Use um nome curto e descritivo</p>
+
+            <input type="text" required className="input" />
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
-              Do Something
-            </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
-              Cancel
+              Cancelar
+            </Button>
+            <Button color="primary" onClick={this.toggle}>
+              Criar!!
             </Button>
           </ModalFooter>
         </Modal>

@@ -1,4 +1,7 @@
 import React from "react";
+
+import { useParams } from "react-router-dom";
+
 import ChartPie from "./svg-icons/chart-diagram-pie-svgrepo-com.svg";
 import ChartGrowth from "./svg-icons/chart-growth-invest-svgrepo-com.svg";
 import CommLetter from "./svg-icons/communication-letter-memo-svgrepo-com.svg";
@@ -10,6 +13,12 @@ import KanbanCard from "../../UI/molecules/KanbanCard";
 
 
 export default function UserHome() {
+
+  const { userId } = useParams(  );
+  
+  React.useEffect (() => {
+    fetch("`${userId}`");
+  }, [])
   return (
     <>
       <Header />

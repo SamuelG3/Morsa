@@ -1,7 +1,9 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 
 import BoardContext from "../Board/context";
+
+import modalShow from "./modalShow";
 
 import { Container, Label } from "./styles";
 
@@ -11,7 +13,7 @@ export default function Card({ data, index, listIndex }) {
 
   const [{ isDragging }, dragRef] = useDrag({
     type: "CARD",
-    item: ({ index, listIndex }),
+    item: { index, listIndex },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -57,14 +59,17 @@ export default function Card({ data, index, listIndex }) {
   dragRef(dropRef(ref));
 
   return (
-    <Container ref={ref} isDragging={isDragging}>
-      <header>
-        {data.labels.map((label) => (
-          <Label key={label} color={label} />
-        ))}
-      </header>
-      <p>{data.content}</p>
-      {data.user && <img src={data.user} alt="" />}
-    </Container>
+    <modalShow>
+      <Container ref={ref} isDragging={isDragging}>
+        <header>
+          {data.labels.map((label) => (
+            <Label key={label} color={label} />
+          ))}
+          
+        </header>
+        <p>{data.content}</p>
+        {data.user && <img src={data.user} alt="" />}
+      </Container>
+    </modalShow>
   );
 }

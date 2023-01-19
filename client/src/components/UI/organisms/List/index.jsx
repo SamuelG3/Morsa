@@ -1,6 +1,7 @@
 import React from "react";
 
 import { MdAdd } from "react-icons/md";
+import AddCardProcess from "../AddCardProcess";
 
 import Card from "../Card";
 
@@ -11,11 +12,7 @@ export default function List({ data, index: listIndex }) {
     <Container done={data.done}>
       <header id="ListHeader">
         <h2>{data.title} (25)</h2>
-        {data.creatable && (
-          <button type="button">
-            <MdAdd size={24} color="#FFF" />
-          </button>
-        )}
+        {data.creatable && <AddCardProcess />}
       </header>
 
       <ul>

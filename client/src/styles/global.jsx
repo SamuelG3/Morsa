@@ -37,6 +37,21 @@ export default createGlobalStyle`
     list-style: none;
   }
 
+  .input {
+  outline: none;
+  border: none;
+  width: 98%;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #edf5f3;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.input:hover,
+.input:focus {
+  border: 1px solid var(--main-color);
+}
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;

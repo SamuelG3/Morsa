@@ -36,7 +36,6 @@ export const Container = styled.div`
       border-radius: 0;
       background: transparent;
       box-shadow: none;
-      cursor: grabbing;
 
       p,
       img,

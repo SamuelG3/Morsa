@@ -17,11 +17,12 @@ app.use(express.json());
 app.use(cors());
 
 // definindo as rotas principais
-const userRoutes = require("./routes/users-routes");
+const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./controller/auth");
 
 app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
 
 const port = process.env.PORT;
+
 app.listen(port, console.log(`Listening on port ${port}...`));
