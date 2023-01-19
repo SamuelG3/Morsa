@@ -1,20 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=Lalezar&display=swap");
-
   .Navbar {
     background-color: #fff;
     border-bottom: 0.5px solid #d1d1d1;
     margin-top: 0;
     width: 100%;
     z-index: 10;
-  }
-
-  #NavbarBrand {
-    font-family: "Lalezar" !important;
-    font-size: 2rem !important;
-    color: #000 !important;
   }
 
   .bi {

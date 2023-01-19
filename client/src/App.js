@@ -1,5 +1,6 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import GlobalStyle from "./styles/global";
+import { Fonts } from "./styles/fonts";
 import Main from "./components/pages/Main";
 import Signup from "./components/pages/Singup";
 import Login from "./components/pages/Login";
@@ -35,6 +36,7 @@ function App() {
         />
       </Routes>
       <GlobalStyle />
+      <Fonts />
     </>
   );
 }

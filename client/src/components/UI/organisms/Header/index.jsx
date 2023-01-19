@@ -86,7 +86,7 @@ function Header(args) {
               <NavItem>
                 <NavLink
                   className="d-flex justify-content-sm-end navLink"
-                  href="https://github.com/reactstrap/reactstrap"
+                  href="/"
                 >
                   <i class="bi bi-bell col-3 "></i>
                   <p id="sm-show">Notificações</p>
@@ -96,7 +96,7 @@ function Header(args) {
               <NavItem>
                 <NavLink
                   className="d-flex justify-content-sm-end navLink"
-                  href="https://github.com/reactstrap/reactstrap"
+                  href="/"
                 >
                   <i className="bi bi-question-circle col-3"></i>
                   <p id="sm-show" class="w-100">

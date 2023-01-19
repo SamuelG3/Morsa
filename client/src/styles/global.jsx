@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export default createGlobalStyle`
+export default createGlobalStyle` 
   * {
     margin: 0;
     padding: 0;
@@ -19,12 +19,20 @@ export default createGlobalStyle`
   html, body, #root {
     height: 100vh;
   }
+
   body {
     font: 14px 'Roboto', sans-serif;
     background: #ecf1f8;
     color: #333;
     -webkit-font-smoothing: antialiased !important;
   }
+
+  #NavbarBrand {
+    font: 2rem 'Lalezar' !important;
+    color: #000 !important;
+    margin: 0 !important;
+  }
+  
   ul {
     list-style: none;
   }

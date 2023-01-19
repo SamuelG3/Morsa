@@ -10,7 +10,9 @@ export default function HomeHeader() {
           to="/"
           class="d-flex mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
         >
-          <h1 class="mx-auto">Morsa</h1>
+          <h1 id="NavbarBrand" class="mx-auto">
+            Morsa
+          </h1>
         </Link>
 
         <ul class="nav nav-pills align-items-center">

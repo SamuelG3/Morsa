@@ -1,14 +1,15 @@
-const router = require("express").Router();
+const { User, validate } = require("../models/user");
 const bcrypt = require("bcrypt");
-const { Pipe, validate } = require("../models/pipe");
 
-router.post("/", async (req, res) => {
+/* router.post("/", async (req, res) => { */
+
+const createUser = async (req, res) => {
   try {
     const { error } = validate(req.body);
     if (error)
       return res.status(400).send({ message: error.details[0].message });
 
-    const user = await Pipe.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email });
     if (user)
       return res
         .status(409)
@@ -22,6 +23,22 @@ router.post("/", async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
-});
+};
 
-module.exports = router;
+const getAll = async (req, res) => { 
+    console.log("Requisição", req);
+
+    res.status(200).send(user);
+}
+
+const deleteUser = async (req, res) => {};
+
+const updateUser = async (req, res) => {};
+
+
+module.exports = { 
+    createUser, 
+    getAll, 
+    deleteUser, 
+    updateUser 
+  };
