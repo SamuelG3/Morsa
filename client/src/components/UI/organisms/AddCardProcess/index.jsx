@@ -44,6 +44,9 @@ class AddCardProcess extends React.Component {
             <b>Dê um título ao seu card!</b>
             <br />
             <input type="text" className="input"></input>
+            {/*  <br />
+            <p>Selecione cor e ícone</p>
+            <div></div> */}
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>

@@ -2,9 +2,16 @@ const mongoose = require("mongoose");
 
 
 const pipeSchema = new mongoose.Schema({
-  Name: { type: "string", required: true },
-  Color: { type: "string", required: true },
-  Lists: [
+  pipeName: { type: "string", required: true },
+  pipeIcon: { type: "string"},
+   color: [{
+    color1: { type: "string", required: true },
+    color2: { type: "string", required: true },
+    color3: { type: "string", required: true },
+    color4: { type: "string", required: true },
+    color5: { type: "string", required: true }
+}],
+  lists: [
     {
       title: { type: "string", required: true },
       creatable: { type: "boolean", required: true },

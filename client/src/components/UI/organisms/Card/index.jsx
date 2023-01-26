@@ -3,8 +3,6 @@ import { useDrag, useDrop } from "react-dnd";
 
 import BoardContext from "../Board/context";
 
-import modalShow from "./modalShow";
-
 import { Container, Label } from "./styles";
 
 export default function Card({ data, index, listIndex }) {

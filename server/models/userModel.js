@@ -5,11 +5,7 @@ const passwordComplexity = require("joi-password-complexity");
 
 const userSchema = new mongoose.Schema({
   id: mongoose.Schema.Types.ObjectId,
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
+  name: {
     type: String,
     required: true,
   },
@@ -24,10 +20,17 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
+    enum: ["Membro", "Administrador"],
+    default: "Membro",
   },
   password: {
     type: String,
     required: true,
+  },
+  photo: {
+    type: String,
+    required: [true, "Please add a Photo"],
+    default: "https://i.ibb.co/4pDNDk1/avatar.png",
   },
 });
 
@@ -37,8 +40,6 @@ userSchema.methods.generateAuthToken = function () {
   });
   return token;
 };
-
-const User = mongoose.model("user", userSchema);
 
 const validate = (data) => {
   const schema = Joi.object({
@@ -50,4 +51,18 @@ const validate = (data) => {
   return schema.validate(data);
 };
 
+// Encypt password before saving to DB
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
+
+  // Hash password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(this.password, salt);
+  this.password = hashedPassword;
+  next();
+});
+
+const User = mongoose.model("user", userSchema);
 module.exports = { User, validate };

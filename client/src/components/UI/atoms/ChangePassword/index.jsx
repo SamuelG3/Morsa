@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import styles from "./styles.module.css";
+import axios from "axios";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 class ChangePassword extends React.Component {
@@ -18,6 +20,24 @@ class ChangePassword extends React.Component {
   }
 
   render() {
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        /* const url = `http://localhost:8080/password-reset`;
+        const { data } = await axios.post(url, { email });
+        setMsg(data.message);
+        setError(""); */
+      } catch (error) {
+        if (
+          error.response &&
+          error.response.status >= 400 &&
+          error.response.status <= 500
+        ) {
+          /* setError(error.response.data.message);
+          setMsg(""); */
+        }
+      }
+    };
     return (
       <div className="ChangePassword">
         <p onClick={this.toggle} className="mx-3">
@@ -32,21 +52,38 @@ class ChangePassword extends React.Component {
             Alterar Senha
           </ModalHeader>
           <ModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            <form className={styles.form_container} onSubmit={handleSubmit}>
+              <input
+                type="password"
+                placeholder="Digite uma nova senha..."
+                name="new-password"
+                /* onChange={(e) => setEmail(e.target.value)} */
+                required
+                className={styles.input}
+              />
+              <input
+                type="password"
+                placeholder="Confirme a nova senha..."
+                name="confirmNewPassword" /* 
+                onChange={(e) => setEmail(e.target.value)} */
+                required
+                className={styles.input}
+              />
+              <br />
+              <input
+                type="password"
+                placeholder="Digite sua senha antiga!"
+                name="password" /* 
+                onChange={(e) => setEmail(e.target.value)} */
+                required
+                className={styles.input}
+              />
+            </form>
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>
-              Do Something
+              Alterar!
             </Button>{" "}
-            <Button color="secondary" onClick={this.toggle}>
-              Cancel
-            </Button>
           </ModalFooter>
         </Modal>
       </div>

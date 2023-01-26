@@ -20,8 +20,8 @@ class AddCard extends React.Component {
   render() {
     return (
       <>
-        <div id="novaDatabase" class="addNewCard" onClick={this.toggle}>
-          <i class="bi bi-plus-square-fill"></i>
+        <div id="novaDatabase" className="addNewCard" onClick={this.toggle}>
+          <i className="bi bi-plus-square-fill"></i>
           <p>Novo Kanban</p>
         </div>
 

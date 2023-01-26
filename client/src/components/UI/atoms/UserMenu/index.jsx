@@ -26,14 +26,14 @@ export default function UserMenu({ direction, ...args }) {
     <div className="d-flex">
       <Dropdown isOpen={dropdownOpen} onClick={toggle} direction={direction}>
         <DropdownToggle color="none">
-          <div id="userMenu" class="navLink">
+          <div id="userMenu" className="navLink">
             <span id="userName" className="sm-hide">
               Ada Wong{" "}
             </span>
             <img src={userProfile} alt="UserName" />
           </div>
         </DropdownToggle>
-        <DropdownMenu {...args} end="true" style={{ width: "280px" }}>
+        <DropdownMenu {...args} style={{ width: "280px" }}>
           <DropdownItem text className="mt-2 font-weight-bold">
             <strong>Ada Wong</strong>
           </DropdownItem>

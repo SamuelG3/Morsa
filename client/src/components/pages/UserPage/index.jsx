@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import UserProfile from "../../../images/undraw_profile.png";
+
 import { Button } from "reactstrap";
-import ReactDOM from "react-dom";
 import { Formik, Field, Form } from "formik";
+import UserProfile from "../../../images/undraw_profile.png";
 import Header from "../../UI/organisms/Header";
 import { UserEditForm } from "./style.module";
 import ChangePassword from "../../UI/atoms/ChangePassword";
@@ -76,13 +76,13 @@ export default function UserPage() {
                     <Field
                       id="username"
                       name="username"
-                      placeholder="Ada-Wong-28"
+                      defaultValue="Ada Wong"
                       className="formInput"
                     />
                   </div>
 
                   <div className="d-flex flex-column my-3">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Ada Wong</label>
                     <Field
                       id="email"
                       name="email"
@@ -94,7 +94,12 @@ export default function UserPage() {
                   </div>
                   <ChangePassword />
                   <div className="d-flex justify-content-end">
-                    <Button type="submit" className="mt-3" id="UserBtnSend">
+                    <Button
+                      primary
+                      onClick="submit"
+                      className="mt-3"
+                      id="UserBtnSend"
+                    >
                       Salvar
                     </Button>
                   </div>
@@ -107,6 +112,3 @@ export default function UserPage() {
     </>
   );
 }
-
-/* ReactDOM.render(<UserPage />, document.getElementById("root"));
- */

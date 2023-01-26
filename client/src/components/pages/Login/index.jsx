@@ -59,7 +59,7 @@ const Login = () => {
               <button type="submit" className={styles.green_btn}>
                 Login
               </button>
-              <a href="/accounts/recovery">Esqueceu sua senha?</a>
+              <a href="/forgot-password">Esqueceu sua senha?</a>
             </form>
           </div>
           <div className={styles.right}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -10,15 +10,37 @@ import Header from "../../UI/organisms/Header";
 import { Container } from "./styles.module";
 import AddCard from "../../UI/molecules/AddCard";
 import KanbanCard from "../../UI/molecules/KanbanCard";
-
+import greetings from "../../../services/greeting";
 
 export default function UserHome() {
+  const { userId } = useParams();
 
-  const { userId } = useParams(  );
+  /* const usuario = localStorage.getItem("token");
+
+ const [user, setUser] = React.useState
+
+ React.useEffect(() => {
   
-  React.useEffect (() => {
-    fetch("`${userId}`");
-  }, [])
+  fetch(`http://localhost:8080/users/${userId}`)
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+ }, [userId]); */
+
+  const [quote, setQuote] = useState("");
+
+  useEffect(() => {
+    getQuote();
+  }, []);
+
+  const getQuote = () => {
+    let dataQuotes = greetings.quotes;
+    console.log(dataQuotes);
+    let randomNum = Math.floor(Math.random() * dataQuotes.length);
+    let randomQuote = dataQuotes[randomNum];
+
+    setQuote(randomQuote.quote);
+  };
+
   return (
     <>
       <Header />
@@ -33,8 +55,7 @@ export default function UserHome() {
                 alt=" "
               />
               <h5 className="text-gray-800 text-wrap">
-                <span id="UserNameHeader">Ada Wong</span>, adoramos ter você
-                aqui! &#128588;
+                <span id="UserNameHeader">Ada Wong</span>, {quote}
               </h5>
             </div>
 

@@ -8,8 +8,9 @@ import Home from "./components/pages/Home";
 import Members from "./components/pages/Members";
 import UserPage from "./components/pages/UserPage";
 import UserHome from "./components/pages/UserHome";
-import PasswRecovery from "./components/pages/PasswRecovery";
-import EmailConfirmation from "./components/emailConfirmation";
+import EmailVerify from "./components/pages/EmailVerify";
+import ForgotPassword from "./components/pages/ForgotPassword";
+import PasswordReset from "./components/pages/PasswordReset";
 
 function App() {
   const user = localStorage.getItem("token");
@@ -19,27 +20,24 @@ function App() {
       <Routes>
         {user && <Route path="/" exact element={<Main />} />}
         {user && <Route path="/members" exact element={<Members />} />}
-        {user && <Route path="/user/id/edit" exact element={<UserPage />} />}
+        {user && (
+          <Route path="/user/:userId/edit" exact element={<UserPage />} />
+        )}
         {user && (
           <Route path="/organization/:userId" exact element={<UserHome />} />
         )}
 
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/login" exact element={<Login />} />
-
-        <Route
-          path="/accounts/recovery/instructions"
-          exact
-          element={<EmailConfirmation />}
-        />
-
-        <Route path="/accounts/recovery" exact element={<PasswRecovery />} />
+        <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/password-reset/:id/:token" element={<PasswordReset />} />
 
         <Route path="/home" exact element={<Home />} />
         <Route path="/" element={<Navigate replace to="/login" />} />
 
         <Route
-          path="/user/id/edit"
+          path="/user/:userId/edit"
           element={<Navigate replace to="/signup" />}
         />
         <Route path="/members" element={<Navigate replace to="/signup" />} />

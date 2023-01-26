@@ -1,19 +1,35 @@
-import React from "react";
-import { Button, Container } from "reactstrap";
+import React, { useState, useEffect } from "react";
+import { Container } from "reactstrap";
 import UserTable from "../../UI/organisms/UserTable";
 import Header from "../../UI/organisms/Header";
+import AddMembers from "../../UI/molecules/AddMembers";
 
-export default function index() {
+export default function Members() {
+  const [peopleCount, setPeopleCount] = useState("");
+
+  useEffect(() => {
+    getPeopleoNumber();
+  }, []);
+
+  const getPeopleoNumber = () => {
+    fetch("http://localhost:8080/users/all")
+      .then((response) => response.json())
+      .then((data) => {
+        const numberPeople = data.length;
+        setPeopleCount(numberPeople);
+      });
+  };
+
   return (
     <div>
       <Header></Header>
       <Container>
         <div className="mt-5">
-          <h4>1 pessoa nessa empresa</h4>
+          <h4>{peopleCount} pessoa(s) nessa empresa</h4>
           <p>
             Gerencie pessoas e funções. <a href="">Saiba mais.</a>
           </p>
-          <Button>Convidar Pessoas</Button>
+          <AddMembers />
         </div>
 
         <UserTable />

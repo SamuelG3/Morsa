@@ -4,6 +4,9 @@ require("dotenv").config();
 // IMPORT DEPENDENCIES
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const errorHandler = require("./middleWare/errorMiddleware");
 
 // CREATE AN EXPRESS APP
 const app = express();
@@ -16,12 +19,11 @@ db.connect();
 app.use(express.json());
 app.use(cors());
 
-// definindo as rotas principais
+// Importando as rotas
 const userRoutes = require("./routes/userRoutes");
-const authRoutes = require("./controller/auth");
 
+// Rotas
 app.use("/users", userRoutes);
-app.use("/auth", authRoutes);
 
 const port = process.env.PORT;
 
