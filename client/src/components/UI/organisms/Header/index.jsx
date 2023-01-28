@@ -9,6 +9,7 @@ import {
   Modal,
   ModalHeader,
 } from "reactstrap";
+import { getAllUsers } from "../../../../services/authServices";
 
 import UserMenu from "../../atoms/UserMenu";
 

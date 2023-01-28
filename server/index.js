@@ -17,7 +17,18 @@ db.connect();
 
 // middlewares
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://morsa-crm.app"],
+    credentials: true,
+  })
+);
+
+// Error Middleware
+app.use(errorHandler);
 
 // Importando as rotas
 const userRoutes = require("./routes/userRoutes");
@@ -25,6 +36,6 @@ const userRoutes = require("./routes/userRoutes");
 // Rotas
 app.use("/users", userRoutes);
 
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 
 app.listen(port, console.log(`Listening on port ${port}...`));

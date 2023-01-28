@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 export default function KanbanCard() {
   return (
     <Link to="/">
-      <div class="itemCard">
+      <div className="itemCard">
         <div id="favoritarCard">
-          <i class="bi bi-star"></i>
+          <i className="bi bi-star"></i>
         </div>
-        <i class="bi bi-airplane-engines-fill"></i>
+        <i className="bi bi-airplane-engines-fill"></i>
         <p id="cardTitle">Projeto Uroboros</p>
         <p id="numeroDeCardsNoPipe">15 cards</p>
         <div id="opcoesDoCard">
-          <i class="bi bi-three-dots-vertical"></i>
+          <i className="bi bi-three-dots-vertical"></i>
         </div>
       </div>
     </Link>

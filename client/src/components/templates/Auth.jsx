@@ -8,7 +8,7 @@ export default function Auth(props) {
         <NavbarBrand
           id="NavbarBrand"
           className="d-flex justify-content-center"
-          href="/home"
+          href="/"
         >
           Morsa
         </NavbarBrand>

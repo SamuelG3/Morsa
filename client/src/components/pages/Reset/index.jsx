@@ -4,7 +4,7 @@ import axios from "axios";
 /* import success from "../../images/success.png"; */
 import styles from "./styles.module.css";
 
-const EmailVerify = () => {
+const Reset = () => {
   const [validUrl, setValidUrl] = useState(false);
   const param = useParams();
 
@@ -40,4 +40,4 @@ const EmailVerify = () => {
   );
 };
 
-export default EmailVerify;
+export default Reset;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import ChartPie from "./svg-icons/chart-diagram-pie-svgrepo-com.svg";
 import ChartGrowth from "./svg-icons/chart-growth-invest-svgrepo-com.svg";
@@ -11,21 +11,18 @@ import { Container } from "./styles.module";
 import AddCard from "../../UI/molecules/AddCard";
 import KanbanCard from "../../UI/molecules/KanbanCard";
 import greetings from "../../../services/greeting";
+import {
+  selectName,
+  selectPhoto,
+  SET_LOGIN,
+} from "../../../redux/features/auth/authSlice";
+import { useSelector } from "react-redux";
 
 export default function UserHome() {
-  const { userId } = useParams();
+  const name = useSelector(selectName);
+  const photo = useSelector(selectPhoto);
 
-  /* const usuario = localStorage.getItem("token");
-
- const [user, setUser] = React.useState
-
- React.useEffect(() => {
-  
-  fetch(`http://localhost:8080/users/${userId}`)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
- }, [userId]); */
-
+  // Greeting quote generator
   const [quote, setQuote] = useState("");
 
   useEffect(() => {
@@ -34,7 +31,6 @@ export default function UserHome() {
 
   const getQuote = () => {
     let dataQuotes = greetings.quotes;
-    console.log(dataQuotes);
     let randomNum = Math.floor(Math.random() * dataQuotes.length);
     let randomQuote = dataQuotes[randomNum];
 
@@ -51,11 +47,11 @@ export default function UserHome() {
               <img
                 id="UserProfileHeader"
                 className="rounded-circle mr-3 "
-                src={UserProfile}
+                src={photo}
                 alt=" "
               />
               <h5 className="text-gray-800 text-wrap">
-                <span id="UserNameHeader">Ada Wong</span>, {quote}
+                <span id="UserNameHeader">{name}</span>, {quote}
               </h5>
             </div>
 

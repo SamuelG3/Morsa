@@ -4,16 +4,18 @@ const {
   registerUser,
   loginUser,
   logout,
+  getAll,
   getUser,
   updateUser,
   changePassword,
   forgotPassword,
-} = require("../controllers/userController");
+} = require("../controller/userController");
 const protect = require("../middleWare/authMiddleware");
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/logout", logout);
+router.get("/all", getAll);
 router.get("/getUser", protect, getUser);
 router.patch("updateuser", protect, updateUser);
 router.patch("/changepassword", protect, changePassword);

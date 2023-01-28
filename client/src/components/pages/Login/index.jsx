@@ -1,32 +1,53 @@
 import { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import Auth from "../../templates/Auth";
 
-const Login = () => {
-  const [data, setData] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
+import { toast } from "react-toastify";
+import { loginUser, validateEmail } from "../../../services/authServices";
+import { useDispatch } from "react-redux";
+import { SET_LOGIN, SET_NAME } from "../../../redux/features/auth/authSlice";
 
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
+const Login = () => {
+  const initialState = {
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
   };
 
-  const handleSubmit = async (e) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState(initialState);
+  const { email, password } = formData;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const login = async (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      return toast.error("Todos os campos precisam estar preenchidos!");
+    }
+    if (!validateEmail(email)) {
+      return toast.error("Por favor, utilize um email válido!");
+    }
+
+    const userData = {
+      email,
+      password,
+    };
+
     try {
-      const url = "http://localhost:8080/auth";
-      const { data: res } = await axios.post(url, data);
-      localStorage.setItem("token", res.data);
-      window.location = "/organization/:userId";
+      const data = await loginUser(userData);
+      await dispatch(SET_LOGIN(true));
+      await dispatch(SET_NAME(data.name));
+      navigate("/organization/:userId");
+      console.log("Logado!");
     } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-      }
+      console.log(error.message);
     }
   };
 
@@ -35,14 +56,14 @@ const Login = () => {
       <div className={styles.login_container}>
         <div className={styles.login_form_container}>
           <div className={styles.left}>
-            <form className={styles.form_container} onSubmit={handleSubmit}>
+            <form className={styles.form_container} onSubmit={login}>
               <h1>Logue na sua conta!</h1>
               <input
                 type="email"
                 placeholder="Email"
                 name="email"
                 onChange={handleChange}
-                value={data.email}
+                value={email}
                 required
                 className={styles.input}
               />
@@ -51,16 +72,15 @@ const Login = () => {
                 placeholder="Password"
                 name="password"
                 onChange={handleChange}
-                value={data.password}
+                value={password}
                 required
                 className={styles.input}
               />
-              {error && <div className={styles.error_msg}>{error}</div>}
               <button type="submit" className={styles.green_btn}>
                 Login
               </button>
-              <a href="/forgot-password">Esqueceu sua senha?</a>
             </form>
+            <a href="/forgot-password">Esqueceu sua senha?</a>
           </div>
           <div className={styles.right}>
             <h1>Novo Aqui ?</h1>

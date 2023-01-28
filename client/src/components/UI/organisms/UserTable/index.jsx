@@ -28,8 +28,11 @@ export default function Index() {
         <tbody>
           {people.map((person) => (
             <tr key={person.email} id={person.email}>
-              <td> </td>
-              <td>{`${person.firstName} ${person.lastName}`}</td>
+              <td>
+                {" "}
+                <img src={`${person.photo}`} alt="" />{" "}
+              </td>
+              <td>{`${person.name}`}</td>
               <td>{`${person.email}`}</td>
               <td>{`${person.role}`}</td>
               <td>

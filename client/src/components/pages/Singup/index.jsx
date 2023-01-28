@@ -1,38 +1,62 @@
-import { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import Auth from "../../templates/Auth";
 
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { registerUser, validateEmail } from "../../../services/authServices";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { SET_LOGIN, SET_NAME } from "../../../redux/features/auth/authSlice";
+
 const Signup = () => {
-  const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
+  const initialState = {
+    name: "",
     email: "",
     password: "",
-  });
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
+    password2: "",
   };
 
-  const handleSubmit = async (e) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState(initialState);
+  const { name, email, password, password2 } = formData;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const register = async (e) => {
     e.preventDefault();
+
+    if (!name || !email || !password) {
+      return toast.error("É preciso preencher todos os campos");
+    }
+    if (password.length < 6) {
+      return toast.error("A senha precisa ter pelo menos 6 caracteres");
+    }
+    if (!validateEmail(email)) {
+      return toast.error("Por favor, coloque um email válido...");
+    }
+    if (password !== password2) {
+      return toast.error("Passwords do not match");
+    }
+
+    const userData = {
+      name,
+      email,
+      password,
+    };
+
     try {
-      const url = "http://localhost:8080/users/create";
-      const { data: res } = await axios.post(url, data);
-      navigate("/login");
-      console.log(res.message);
+      const data = await registerUser(userData);
+      /* console.log(data); */
+      await dispatch(SET_LOGIN(true));
+      await dispatch(SET_NAME(data.name));
+      navigate("/organization/:userId");
+      console.log("Usuário criado com sucesso!");
     } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-      }
+      console.log(error.message);
     }
   };
 
@@ -49,32 +73,24 @@ const Signup = () => {
             </Link>
           </div>
           <div className={styles.right}>
-            <form className={styles.form_container} onSubmit={handleSubmit}>
+            <form className={styles.form_container} onSubmit={register}>
               <h1>Crie uma conta!</h1>
               <input
                 type="text"
                 placeholder="Nome"
-                name="firstName"
+                name="name"
                 onChange={handleChange}
-                value={data.firstName}
+                value={name}
                 required
                 className={styles.input}
               />
-              <input
-                type="text"
-                placeholder="Sobrenome"
-                name="lastName"
-                onChange={handleChange}
-                value={data.lastName}
-                required
-                className={styles.input}
-              />
+
               <input
                 type="email"
                 placeholder="E-mail"
                 name="email"
                 onChange={handleChange}
-                value={data.email}
+                value={email}
                 required
                 className={styles.input}
               />
@@ -83,11 +99,20 @@ const Signup = () => {
                 placeholder="Senha"
                 name="password"
                 onChange={handleChange}
-                value={data.password}
+                value={password}
                 required
                 className={styles.input}
               />
-              {error && <div className={styles.error_msg}>{error}</div>}
+              <input
+                type="password"
+                placeholder="Confirme a sua senha..."
+                name="password2"
+                onChange={handleChange}
+                value={password2}
+                required
+                className={styles.input}
+              />
+
               <button type="submit" className={styles.green_btn}>
                 Cadastre-se
               </button>

@@ -1,25 +1,39 @@
 import React, { useState } from "react";
 import "./style.css";
-
 import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-
-import userProfile from "../../../../images/undraw_profile.png";
-
 import PropTypes from "prop-types";
+import { logoutUser } from "../../../../services/authServices";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  selectEmail,
+  selectName,
+  selectPhoto,
+  SET_LOGIN,
+} from "../../../../redux/features/auth/authSlice";
 
 export default function UserMenu({ direction, ...args }) {
+  //DropDown Menu
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
+  //User Info
+  const name = useSelector(selectName);
+  const email = useSelector(selectEmail);
+  const photo = useSelector(selectPhoto);
+
+  // LogOut
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    await logoutUser();
+    await dispatch(SET_LOGIN(false));
+    navigate("/login");
   };
 
   return (
@@ -28,16 +42,16 @@ export default function UserMenu({ direction, ...args }) {
         <DropdownToggle color="none">
           <div id="userMenu" className="navLink">
             <span id="userName" className="sm-hide">
-              Ada Wong{" "}
+              {name}{" "}
             </span>
-            <img src={userProfile} alt="UserName" />
+            <img src={photo} alt="Foto de perfil" />
           </div>
         </DropdownToggle>
         <DropdownMenu {...args} style={{ width: "280px" }}>
           <DropdownItem text className="mt-2 font-weight-bold">
-            <strong>Ada Wong</strong>
+            <strong>{name}</strong>
           </DropdownItem>
-          <DropdownItem header>ada.wong@gmail.com</DropdownItem>
+          <DropdownItem header>{email}</DropdownItem>
           <DropdownItem href="/user/id/edit">
             Preferências da conta
           </DropdownItem>
