@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState } from "react";
+import React, { useRef, useContext } from "react";
 import { useDrag, useDrop } from "react-dnd";
 
 import BoardContext from "../Board/context";
@@ -63,7 +63,6 @@ export default function Card({ data, index, listIndex }) {
           {data.labels.map((label) => (
             <Label key={label} color={label} />
           ))}
-          
         </header>
         <p>{data.content}</p>
         {data.user && <img src={data.user} alt="" />}

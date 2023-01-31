@@ -1,19 +1,29 @@
-import React from 'react';
-import DefaultUserPic from './Default-Profile.png'
+import React, { useEffect, useState } from "react";
+import { getUser } from "../../../../services/authServices";
+import { useDispatch } from "react-redux";
+import { SET_USER } from "../../../../redux/features/auth/authSlice";
 
-class UserProfile extends React.Component {
+export default function UserPicture() {
+  const [profile, setProfile] = useState(null);
 
-render(){
-if(this.state.profileImage){
-        var imagestr=this.state.profileImage;
-        imagestr = imagestr.replace("public/", "");
-        var profilePic="http://localhost:5000/"+imagestr;
-    }else{
-         profilePic=DefaultUserPic;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    async function getUserData() {
+      const data = await getUser();
+      console.log(data);
+
+      setProfile(data);
+      await dispatch(SET_USER(data));
     }
+    getUserData();
+  }, [dispatch]);
+
+  return (
+    <img
+      id="userPicture"
+      className="rounded-circle"
+      src={profile?.photo}
+      alt=" "
+    />
+  );
 }
-
-return ()
-}
-
-

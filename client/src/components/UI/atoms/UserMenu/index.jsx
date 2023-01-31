@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import {
   Dropdown,
@@ -7,15 +7,16 @@ import {
   DropdownItem,
 } from "reactstrap";
 import PropTypes from "prop-types";
-import { logoutUser } from "../../../../services/authServices";
+import { getUser, logoutUser } from "../../../../services/authServices";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
-  selectEmail,
   selectName,
-  selectPhoto,
   SET_LOGIN,
+  SET_NAME,
+  SET_USER,
 } from "../../../../redux/features/auth/authSlice";
+import UserPicture from "../UserPicture";
 
 export default function UserMenu({ direction, ...args }) {
   //DropDown Menu
@@ -24,12 +25,25 @@ export default function UserMenu({ direction, ...args }) {
 
   //User Info
   const name = useSelector(selectName);
-  const email = useSelector(selectEmail);
-  const photo = useSelector(selectPhoto);
+
+  const dispatch = useDispatch();
+
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    async function getUserData() {
+      const data = await getUser();
+
+      setProfile(data);
+      await dispatch(SET_USER(data));
+      await dispatch(SET_NAME(data.name));
+    }
+    getUserData();
+  }, [dispatch]);
 
   // LogOut
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleLogout = async () => {
     await logoutUser();
     await dispatch(SET_LOGIN(false));
@@ -44,15 +58,15 @@ export default function UserMenu({ direction, ...args }) {
             <span id="userName" className="sm-hide">
               {name}{" "}
             </span>
-            <img src={photo} alt="Foto de perfil" />
+            <UserPicture />
           </div>
         </DropdownToggle>
         <DropdownMenu {...args} style={{ width: "280px" }}>
-          <DropdownItem text className="mt-2 font-weight-bold">
+          <DropdownItem header className="font-weight-bold mb-0">
             <strong>{name}</strong>
+            <p>{profile?.email}</p>
           </DropdownItem>
-          <DropdownItem header>{email}</DropdownItem>
-          <DropdownItem href="/user/id/edit">
+          <DropdownItem href="/profile">
             Preferências da conta
           </DropdownItem>
 

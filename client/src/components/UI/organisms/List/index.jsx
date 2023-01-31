@@ -1,6 +1,5 @@
 import React from "react";
 
-import { MdAdd } from "react-icons/md";
 import AddCardProcess from "../AddCardProcess";
 
 import Card from "../Card";

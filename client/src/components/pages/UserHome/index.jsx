@@ -1,27 +1,26 @@
+// Importing Dempendencies
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
-import { useNavigate, useParams } from "react-router-dom";
-
+// Importing Images
 import ChartPie from "./svg-icons/chart-diagram-pie-svgrepo-com.svg";
 import ChartGrowth from "./svg-icons/chart-growth-invest-svgrepo-com.svg";
 import CommLetter from "./svg-icons/communication-letter-memo-svgrepo-com.svg";
-import UserProfile from "../../../images/undraw_profile.png";
+
+// Importing React Components
 import Header from "../../UI/organisms/Header";
 import { Container } from "./styles.module";
 import AddCard from "../../UI/molecules/AddCard";
 import KanbanCard from "../../UI/molecules/KanbanCard";
+import UserPicture from "../../UI/atoms/UserPicture";
+
+// Importing Data
 import greetings from "../../../services/greeting";
-import {
-  selectName,
-  selectPhoto,
-  SET_LOGIN,
-} from "../../../redux/features/auth/authSlice";
-import { useSelector } from "react-redux";
 
+import { selectName } from "../../../redux/features/auth/authSlice";
+
+//Exporting Page
 export default function UserHome() {
-  const name = useSelector(selectName);
-  const photo = useSelector(selectPhoto);
-
   // Greeting quote generator
   const [quote, setQuote] = useState("");
 
@@ -37,6 +36,9 @@ export default function UserHome() {
     setQuote(randomQuote.quote);
   };
 
+  // Set profile
+  const name = useSelector(selectName);
+
   return (
     <>
       <Header />
@@ -44,14 +46,9 @@ export default function UserHome() {
         <div className="container">
           <div className="d-flex flex-column flex-lg-row justify-content-between mt-5 align-items-center ">
             <div className="d-flex align-items-center">
-              <img
-                id="UserProfileHeader"
-                className="rounded-circle mr-3 "
-                src={photo}
-                alt=" "
-              />
+              <UserPicture className="userProfileHeader" />
               <h5 className="text-gray-800 text-wrap">
-                <span id="UserNameHeader">{name}</span>, {quote}
+                <span className="userNameHeader">{name}</span>, {quote}
               </h5>
             </div>
 

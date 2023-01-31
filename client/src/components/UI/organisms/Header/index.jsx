@@ -9,7 +9,6 @@ import {
   Modal,
   ModalHeader,
 } from "reactstrap";
-import { getAllUsers } from "../../../../services/authServices";
 
 import UserMenu from "../../atoms/UserMenu";
 
@@ -68,7 +67,7 @@ function Header(args) {
               <NavItem>
                 <NavLink
                   className="d-flex justify-content-sm-end navLink"
-                  href="https://github.com/reactstrap/reactstrap"
+                  href="/"
                 >
                   <i className="bi bi-bell col-3 "></i>
                 </NavLink>
@@ -77,7 +76,7 @@ function Header(args) {
               <NavItem>
                 <NavLink
                   className="d-flex justify-content-sm-end navLink"
-                  href="https://github.com/reactstrap/reactstrap"
+                  href="/"
                 >
                   <i className="bi bi-question-circle col-3"></i>
                 </NavLink>
@@ -97,7 +96,7 @@ function Header(args) {
               <NavItem id="sm-hide">
                 <NavLink className="d-flex align-items-center justify-content-between navLink">
                   <i className="bi bi-people"></i>
-                  <p className="my-0 mx-1">Pessoas (108)</p>
+                  <p className="my-0 mx-1">Pessoas ({peopleCount})</p>
                 </NavLink>
               </NavItem>
               <NavItem>

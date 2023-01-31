@@ -27,7 +27,7 @@ export default function Members() {
         <div className="mt-5">
           <h4>{peopleCount} pessoa(s) nessa empresa</h4>
           <p>
-            Gerencie pessoas e funções. <a href="">Saiba mais.</a>
+            Gerencie pessoas e funções. <a href="/">Saiba mais.</a>
           </p>
           <AddMembers />
         </div>

@@ -65,7 +65,7 @@ class AddMembers extends React.Component {
                 className={styles.input}
               />
 
-              <a href="" className={styles.mais_pessoas}>
+              <a href="/" className={styles.mais_pessoas}>
                 + Adicionar pessoas
               </a>
             </form>

@@ -10,27 +10,27 @@ export default function HomeFooter() {
               <h5>Ainda não conhece a Morsa?</h5>
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Por que a Morsa?
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     O que é CRM?
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Histórias de sucesso de clientes
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Edições e Preços
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Explorar todos os produtos
                   </a>
                 </li>
@@ -41,27 +41,27 @@ export default function HomeFooter() {
               <h5>Sobre a Morsa</h5>
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Nossa história
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Blog
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Carreiras
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Legal
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Ser um Trailblazer
                   </a>
                 </li>
@@ -72,27 +72,27 @@ export default function HomeFooter() {
               <h5>Links populares</h5>
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Informações Legais
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Termos de Serviços
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Privacidade
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Contato
                   </a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-muted">
+                  <a href="/" className="nav-link p-0 text-muted">
                     Cookie Preferences
                   </a>
                 </li>
@@ -133,17 +133,17 @@ export default function HomeFooter() {
             </p>
             <ul className="list-unstyled d-flex align-items-center">
               <li className="ms-3">
-                <a className="link-dark" href="#">
+                <a className="link-dark" href="/">
                   <i className="bi bi-twitter"></i>
                 </a>
               </li>
               <li className="ms-3">
-                <a className="link-dark" href="#">
+                <a className="link-dark" href="/">
                   <i className="bi bi-instagram"></i>
                 </a>
               </li>
               <li className="ms-3">
-                <a className="link-dark" href="#">
+                <a className="link-dark" href="/">
                   <i className="bi bi-facebook"></i>
                 </a>
               </li>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function KanbanCard() {
   return (
-    <Link to="/">
+    <Link to="/kanban">
       <div className="itemCard">
         <div id="favoritarCard">
           <i className="bi bi-star"></i>

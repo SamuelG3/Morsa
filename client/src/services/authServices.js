@@ -50,10 +50,10 @@ export const loginUser = async (userData) => {
   }
 };
 
-// Login User
+// Logout User
 export const logoutUser = async () => {
   try {
-    const response = await axios.get(`http://localhost:8080/users/logout`);
+    await axios.get(`http://localhost:8080/users/logout`);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -95,6 +95,23 @@ export const getUser = async () => {
 export const getLoginStatus = async () => {
   try {
     const response = await axios.get(`http://localhost:8080/users/loggedin`);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
+
+// Update Profile
+export const updateUser = async (formData) => {
+  try {
+    const response = await axios.patch(
+      `http://localhost:8080/users/updateuser`,
+      formData
+    );
     return response.data;
   } catch (error) {
     const message =

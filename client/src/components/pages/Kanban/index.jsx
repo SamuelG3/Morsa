@@ -7,7 +7,7 @@ import Board from "../../UI/organisms/Board";
 import "./style.css";
 import SearchBar from "../../UI/atoms/SearchBar";
 
-const Main = () => {
+const Kanban = () => {
   return (
     <div class="KanbanPage">
       <DndProvider backend={HTML5Backend}>
@@ -72,10 +72,10 @@ const Main = () => {
             </Nav>
           </Navbar>
         </div>
-        <Board id="Board"/>
+        <Board id="Board" />
       </DndProvider>
     </div>
   );
 };
 
-export default Main;
+export default Kanban;

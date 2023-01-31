@@ -6,7 +6,7 @@ export const UserEditForm = style.div`
 }
 
 #UserBtnSend {
-    width: 150px;
+    width: 100%;
 }
 
 label {

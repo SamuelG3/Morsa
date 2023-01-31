@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  #UserProfileHeader {
-    width: 70px;
+  #userPicture {
+    width: 90px;
     margin-right: 15px;
   }
-  #UserNameHeader {
+
+  .userNameHeader {
     font-weight: bold;
   }
 

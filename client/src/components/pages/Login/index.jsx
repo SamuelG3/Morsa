@@ -42,6 +42,7 @@ const Login = () => {
 
     try {
       const data = await loginUser(userData);
+      console.log(data);
       await dispatch(SET_LOGIN(true));
       await dispatch(SET_NAME(data.name));
       navigate("/organization/:userId");

@@ -18,7 +18,6 @@ export default function Index() {
       <Table hover>
         <thead>
           <tr>
-            <th> </th>
             <th>Nome</th>
             <th>Email</th>
             <th>Função</th>
@@ -29,10 +28,21 @@ export default function Index() {
           {people.map((person) => (
             <tr key={person.email} id={person.email}>
               <td>
-                {" "}
-                <img src={`${person.photo}`} alt="" />{" "}
+                <div className="d-flex align-items-center">
+                  <img
+                    src={`${person.photo}`}
+                    alt="Imagem de Perfil do usuário"
+                    id="profilePic"
+                    className="rounded-circle"
+                  />
+                  <div>
+                    <p className="mx-2 my-0">
+                      <b>{`${person.name}`}</b>
+                    </p>
+                    <p className="mx-2 my-0">{`${person.email}`}</p>
+                  </div>
+                </div>
               </td>
-              <td>{`${person.name}`}</td>
               <td>{`${person.email}`}</td>
               <td>{`${person.role}`}</td>
               <td>

@@ -11,10 +11,6 @@ const errorHandler = require("./middleWare/errorMiddleware");
 // CREATE AN EXPRESS APP
 const app = express();
 
-// database connection
-const db = require("./config/db");
-db.connect();
-
 // middlewares
 app.use(express.json());
 app.use(cookieParser());
@@ -22,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://morsa-crm.app"],
+    origin: ["http://localhost:3000" /* "https://pinvent-app.vercel.app" */],
     credentials: true,
   })
 );
@@ -36,6 +32,11 @@ const userRoutes = require("./routes/userRoutes");
 // Rotas
 app.use("/users", userRoutes);
 
+// Connect to DB and start server
 const port = process.env.PORT || 5000;
+
+// database connection
+const db = require("./config/db");
+db.connect();
 
 app.listen(port, console.log(`Listening on port ${port}...`));
