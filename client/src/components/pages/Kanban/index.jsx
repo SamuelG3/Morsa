@@ -6,6 +6,7 @@ import Header from "../../UI/organisms/Header";
 import Board from "../../UI/organisms/Board";
 import "./style.css";
 import SearchBar from "../../UI/atoms/SearchBar";
+import ErrorMess from "../../UI/atoms/ErrorMess";
 
 const Kanban = () => {
   return (
@@ -19,16 +20,16 @@ const Kanban = () => {
             color="light"
             className="border-bottom d-flex justify-content-between"
           >
-            <Nav className="me-auto nav-1">
+            <Nav id="kanbanServices" className="me-auto nav-1">
               <NavItem>
-                <NavLink href="/">
+                <NavLink onClick={ErrorMess}>
                   <p>
                     <i class="bi bi-inboxes"></i> Kanban{" "}
                   </p>
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="">
+                <NavLink onClick={ErrorMess}>
                   <p>
                     <i class="bi bi-clipboard-data"></i> Relatórios
                   </p>
@@ -36,7 +37,7 @@ const Kanban = () => {
               </NavItem>
 
               <NavItem>
-                <NavLink href="">
+                <NavLink onClick={ErrorMess}>
                   <p>
                     <i class="bi bi-ui-checks"></i> Formulário
                   </p>
@@ -44,7 +45,7 @@ const Kanban = () => {
               </NavItem>
 
               <NavItem>
-                <NavLink href="">
+                <NavLink onClick={ErrorMess}>
                   <p>
                     <i class="bi bi-envelope"></i> Emails
                   </p>
@@ -52,7 +53,7 @@ const Kanban = () => {
               </NavItem>
 
               <NavItem>
-                <NavLink href="">
+                <NavLink onClick={ErrorMess}>
                   <p>
                     <i class="bi bi-pie-chart"></i> Painéis
                   </p>

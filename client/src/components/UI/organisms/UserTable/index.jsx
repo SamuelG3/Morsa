@@ -1,13 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Table } from "reactstrap";
-import DeleteMember from "../../atoms/DeleteMember";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { useDispatch } from "react-redux";
+import { deleteUser, getAllUsers } from "../../../../services/authServices";
 
 import { Container } from "./styles.module";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Index() {
-  const [people, setPeople] = React.useState([]);
+  const dispatch = useDispatch();
 
-  React.useEffect(() => {
+  const delUser = async (id) => {
+    console.log(id);
+    await dispatch(deleteUser(id));
+    await dispatch(getAllUsers());
+  };
+
+  const confirmDelete = (id) => {
+    confirmAlert({
+      title: "Você tem certeza?",
+      message: "Este usuário não será mais membro deste time.",
+      buttons: [
+        {
+          label: "Remover",
+          onClick: () => delUser(id),
+        },
+        {
+          label: "Cancelar",
+        },
+      ],
+    });
+  };
+
+  const [people, setPeople] = useState([]);
+
+  useEffect(() => {
     fetch("http://localhost:8080/users/all")
       .then((response) => response.json())
       .then((data) => setPeople(data));
@@ -19,14 +48,13 @@ export default function Index() {
         <thead>
           <tr>
             <th>Nome</th>
-            <th>Email</th>
             <th>Função</th>
             <th> </th>
           </tr>
         </thead>
         <tbody>
           {people.map((person) => (
-            <tr key={person.email} id={person.email}>
+            <tr key={person._id}>
               <td>
                 <div className="d-flex align-items-center">
                   <img
@@ -43,10 +71,12 @@ export default function Index() {
                   </div>
                 </div>
               </td>
-              <td>{`${person.email}`}</td>
               <td>{`${person.role}`}</td>
               <td>
-                <DeleteMember />
+                <i
+                  class="bi bi-x-circle-fill"
+                  onClick={() => confirmDelete(person._id)}
+                ></i>
               </td>
             </tr>
           ))}

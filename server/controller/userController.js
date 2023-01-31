@@ -30,10 +30,10 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExists) {
     res.status(400);
-    throw new Error("Email has already been registered");
+    throw new Error("Este email já está registrado!");
   }
 
-  // Create new user
+  // Cria um novo usuário
   const user = await User.create({
     name,
     email,
@@ -59,8 +59,6 @@ const registerUser = asyncHandler(async (req, res) => {
       name,
       email,
       photo,
-      phone,
-      bio,
       token,
     });
   } else {
@@ -199,31 +197,31 @@ const updateUser = asyncHandler(async (req, res) => {
 
 // Change Password
 const changePassword = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user.id);
-
+  const user = await User.findById(req.user._id);
   const { oldPassword, password } = req.body;
 
   if (!user) {
     res.status(400);
-    throw new Error("User not found, please signup");
+    throw new Error("Usuário não encontrado, por favor, cadastre-se");
   }
 
-  // Validate
+  // Validando se inseriu ambos os campos de antiga e nova senha
   if (!oldPassword || !password) {
     res.status(400);
-    throw new Error("Please add old and new Passoword");
+    throw new Error("Por favor, insira a senha atual e a nova.");
   }
 
-  // Check if password is correct
-  const passwordIsCorrect = await bcrypt.compare(oldPassowrd, user.password);
+  // Check se a senha está correta
+  const passwordIsCorrect = await bcrypt.compare(oldPassword, user.password);
 
   // Save new password
   if (user && passwordIsCorrect) {
     user.password = password;
     await user.save();
-    res.status(200).send("Password change successful");
+    res.status(200).send("Senha alterada com sucesso!");
   } else {
-    throw new Error("Old password is incorrect");
+    res.status(400);
+    throw new Error("A senha antiga está incorreta.");
   }
 });
 
@@ -234,13 +232,20 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(404);
-    throw new Error("User not found");
+    throw new Error("Usuário não encontrado...");
   }
 
-  // Create Reset Token
-  let resetToken = crypto.randomBytes(32).toString("hex") + user._id;
+  // Delete token if it exists in DB
+  let token = await Token.findOne({ userId: user._id });
+  if (token) {
+    await token.deleteOne();
+  }
 
-  //Hash token before saving to DB
+  // Create Reste Token
+  let resetToken = crypto.randomBytes(32).toString("hex") + user._id;
+  console.log(resetToken);
+
+  // Hash token before saving to DB
   const hashedToken = crypto
     .createHash("sha256")
     .update(resetToken)
@@ -251,11 +256,11 @@ const forgotPassword = asyncHandler(async (req, res) => {
     userId: user._id,
     token: hashedToken,
     createdAt: Date.now(),
-    expiresAt: Date.now() + 30 * 1000, // Thirty Minutes
+    expiresAt: Date.now() + 30 * (60 * 1000), // Thirty minutes
   }).save();
 
-  //Construct Reset Url
-  const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
+  // Construct Reset Url
+  const resetUrl = `http://localhost:3000/resetpassword/${resetToken}`;
 
   // Reset Email
   const message = `
@@ -272,13 +277,29 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
   try {
     await sendEmail(subject, message, send_to, sent_from);
-    res.status(200).json({ sucess: true, message: "Email de reset enviado" });
+    res.status(200).json({ success: true, message: "Email de reset enviado!" });
   } catch (error) {
     res.status(500);
-    throw new Error("Email not sent, please try again.");
+    throw new Error("Email não enviado, tente novamente.");
+  }
+});
+
+// Delete User
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  // Se usuário não existe
+  if (!user) {
+    res.status(404);
+    throw new Error("Usuário não encontrado...");
   }
 
-  res.send("Forgot password");
+  // Usuário precisa ser administrador para a alteração
+  /* if (req.user.id !== "admin") {
+    throw new Error("Você não tem permissão de fazer esta ação...");
+  } */
+
+  await user.remove();
+  res.status(200).json({ user });
 });
 
 module.exports = {
@@ -291,4 +312,5 @@ module.exports = {
   updateUser,
   changePassword,
   forgotPassword,
+  deleteUser,
 };

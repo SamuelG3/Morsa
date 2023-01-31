@@ -13,15 +13,17 @@ export const Container = styled.div`
   #cards {
     a {
       margin-right: 15px;
-      border: none;
       color: black;
       text-decoration: none;
+      border: 1px solid lightgrey;
     }
 
     a:hover {
-      border: 2px solid var(--main-color);
+      border: 1px solid var(--main-color);
+      cursor: pointer;
     }
   }
+
   .addNewCard {
     padding: 1rem 1.5rem;
     border: 2px rgb(175, 210, 233) dotted;

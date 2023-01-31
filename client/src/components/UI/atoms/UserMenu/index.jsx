@@ -17,6 +17,7 @@ import {
   SET_USER,
 } from "../../../../redux/features/auth/authSlice";
 import UserPicture from "../UserPicture";
+import ErrorMess from "../ErrorMess";
 
 export default function UserMenu({ direction, ...args }) {
   //DropDown Menu
@@ -66,13 +67,11 @@ export default function UserMenu({ direction, ...args }) {
             <strong>{name}</strong>
             <p>{profile?.email}</p>
           </DropdownItem>
-          <DropdownItem href="/profile">
-            Preferências da conta
-          </DropdownItem>
+          <DropdownItem href="/profile">Preferências da conta</DropdownItem>
 
           <DropdownItem divider />
-          <DropdownItem>Relatórios da empresa</DropdownItem>
-          <DropdownItem>Trocar de empresa</DropdownItem>
+          <DropdownItem onClick={ErrorMess}>Relatórios da empresa</DropdownItem>
+          <DropdownItem onClick={ErrorMess}>Trocar de empresa</DropdownItem>
           <DropdownItem divider />
           <DropdownItem onClick={handleLogout}>Sair</DropdownItem>
         </DropdownMenu>

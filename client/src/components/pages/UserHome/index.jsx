@@ -18,6 +18,7 @@ import UserPicture from "../../UI/atoms/UserPicture";
 import greetings from "../../../services/greeting";
 
 import { selectName } from "../../../redux/features/auth/authSlice";
+import ErrorMess from "../../UI/atoms/ErrorMess";
 
 //Exporting Page
 export default function UserHome() {
@@ -54,8 +55,8 @@ export default function UserHome() {
 
             <div id="cards" className="d-flex my-3 mx-5">
               <a
-                className="d-flex align-items-center px-3 py-2 mr-2 border rounded"
-                href="/"
+                className="d-flex align-items-center px-3 py-2 mr-2  rounded"
+                onClick={ErrorMess}
               >
                 <div className="mr-2">
                   <img width="30" height="30" src={ChartPie} alt="" />
@@ -67,8 +68,8 @@ export default function UserHome() {
               </a>
 
               <a
-                className="d-flex align-items-center px-3 py-2 mr-2 border rounded"
-                href="/"
+                className="d-flex align-items-center px-3 py-2 mr-2  rounded"
+                onClick={ErrorMess}
               >
                 <div className="mr-2">
                   <img width="30" height="30" src={ChartGrowth} alt=" " />
@@ -80,8 +81,8 @@ export default function UserHome() {
               </a>
 
               <a
-                className="d-flex align-items-center px-3 py-2 border rounded"
-                href="/"
+                className="d-flex align-items-center px-3 py-2  rounded"
+                onClick={ErrorMess}
               >
                 <div className="mr-2">
                   <img width="30" height="30" src={CommLetter} alt=" " />
@@ -103,14 +104,6 @@ export default function UserHome() {
 
             <KanbanCard />
           </div>
-
-          {/*    <div className="mt-5 border-bottom">
-                <h3 className="font-weight-bold ">Databases</h3>
-            </div>
-            <div id="Databases" className="mt-4 mb-5">
-            <AddCard />
-        
-             </div> */}
         </div>
       </Container>
     </>

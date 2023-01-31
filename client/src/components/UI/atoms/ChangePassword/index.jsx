@@ -1,93 +1,99 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles.module.css";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { changePassword } from "../../../../services/authServices";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-class ChangePassword extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal: false,
+export default function ChangePassword() {
+  // Constructor para o modal!
+  // Modal open state
+  const [modal, setModal] = React.useState(false);
+
+  // Toggle for Modal
+  const toggle = () => setModal(!modal);
+
+  const navigate = useNavigate();
+  const initialState = {
+    oldPassword: "",
+    password: "",
+    password2: "",
+  };
+
+  //Definindo useState para o form
+  const [formData, setformData] = useState(initialState);
+  const { oldPassword, password, password2 } = formData;
+
+  // Definindo valores para o form
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setformData({ ...formData, [name]: value });
+  };
+
+  // Definindo função de evento para envio do form
+  const changePass = async (e) => {
+    e.preventDefault();
+    //Comparando a senha nova e a confirmação
+    if (password !== password2) {
+      return toast.error("É preciso confirmar a nova senha!");
+    }
+    //Definindo uma variável para enviar para o backend
+    const formData = {
+      oldPassword,
+      password,
     };
+    //Envinado para o backend
+    const data = await changePassword(formData);
+    toast.success(data);
+    navigate("/profile");
+  };
 
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({
-      modal: !this.state.modal,
-    });
-  }
-
-  render() {
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        /* const url = `http://localhost:8080/password-reset`;
-        const { data } = await axios.post(url, { email });
-        setMsg(data.message);
-        setError(""); */
-      } catch (error) {
-        if (
-          error.response &&
-          error.response.status >= 400 &&
-          error.response.status <= 500
-        ) {
-          /* setError(error.response.data.message);
-          setMsg(""); */
-        }
-      }
-    };
-    return (
-      <div className="ChangePassword">
-        <p onClick={this.toggle} className="mx-3">
-          Alterar Senha
-        </p>
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-          className={this.props.className}
-        >
-          <ModalHeader toggle={this.toggle} charCode="Y">
-            Alterar Senha
-          </ModalHeader>
+  return (
+    <div className="ChangePassword">
+      <p onClick={toggle} className="mx-3">
+        Alterar Senha
+      </p>
+      <Modal isOpen={modal} toggle={toggle}>
+        <form className={styles.form_container} onSubmit={changePass}>
+          <ModalHeader charCode="Y">Alterar Senha</ModalHeader>
           <ModalBody>
-            <form className={styles.form_container} onSubmit={handleSubmit}>
-              <input
-                type="password"
-                placeholder="Digite uma nova senha..."
-                name="new-password"
-                /* onChange={(e) => setEmail(e.target.value)} */
-                required
-                className={styles.input}
-              />
-              <input
-                type="password"
-                placeholder="Confirme a nova senha..."
-                name="confirmNewPassword" /* 
-                onChange={(e) => setEmail(e.target.value)} */
-                required
-                className={styles.input}
-              />
-              <br />
-              <input
-                type="password"
-                placeholder="Digite sua senha antiga!"
-                name="password" /* 
-                onChange={(e) => setEmail(e.target.value)} */
-                required
-                className={styles.input}
-              />
-            </form>
+            <input
+              type="password"
+              placeholder="Digite uma nova senha..."
+              name="password"
+              value={password}
+              onChange={handleInputChange}
+              required
+              className={styles.input}
+            />
+            <input
+              type="password"
+              placeholder="Confirme a nova senha..."
+              name="password2"
+              value={password2}
+              onChange={handleInputChange}
+              required
+              className={styles.input}
+            />
+            <br />
+            <br />
+            <input
+              type="password"
+              placeholder="Digite sua antiga senha..."
+              name="oldPassword"
+              value={oldPassword}
+              onChange={handleInputChange}
+              required
+              className={styles.input}
+            />
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
+            <Button color="primary" type="submit">
               Alterar!
             </Button>{" "}
           </ModalFooter>
-        </Modal>
-      </div>
-    );
-  }
+        </form>
+      </Modal>
+    </div>
+  );
 }
-
-export default ChangePassword;

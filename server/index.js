@@ -28,9 +28,15 @@ app.use(errorHandler);
 
 // Importando as rotas
 const userRoutes = require("./routes/userRoutes");
+const boardRoutes = require("./routes/boardRoutes"); /* 
+const listRoutes = require("./routes/listRoutes"); */
+const cardRoutes = require("./routes/cardRoutes");
 
 // Rotas
 app.use("/users", userRoutes);
+app.use("/board", boardRoutes);
+/* app.use("/list", listRoutes); */
+app.use("/card", cardRoutes);
 
 // Connect to DB and start server
 const port = process.env.PORT || 5000;

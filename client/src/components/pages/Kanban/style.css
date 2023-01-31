@@ -13,3 +13,7 @@
 #kanbanNavbar p:hover {
   color: var(--main-color);
 }
+
+#kanbanServices * {
+  cursor: pointer;
+}

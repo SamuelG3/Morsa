@@ -2,36 +2,35 @@ import { useState } from "react";
 import axios from "axios";
 import styles from "./styles.module.css";
 import Auth from "../../templates/Auth";
+import { toast } from "react-toastify";
+import { forgotPassword, validateEmail } from "../../../services/authServices";
 
-const ForgotPassword = () => {
+export default function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [msg, setMsg] = useState("");
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
+  const forgot = async (e) => {
     e.preventDefault();
-    try {
-      const url = `http://localhost:8080/password-reset`;
-      const { data } = await axios.post(url, { email });
-      setMsg(data.message);
-      setError("");
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-        setMsg("");
-      }
+    if (!email) {
+      return toast.error("Please enter an email");
     }
+
+    if (!validateEmail(email)) {
+      return toast.error("Please enter a valid email");
+    }
+
+    const userData = {
+      email,
+    };
+
+    await forgotPassword(userData);
+    setEmail("");
   };
 
   return (
     <Auth>
       <div className={styles.container}>
-        <form className={styles.form_container} onSubmit={handleSubmit}>
-          <h1>Forgot Password</h1>
+        <form className={styles.form_container} onSubmit={forgot}>
+          <h1>Esqueceu a senha?!</h1>
           <input
             type="email"
             placeholder="Email"
@@ -41,15 +40,12 @@ const ForgotPassword = () => {
             required
             className={styles.input}
           />
-          {error && <div className={styles.error_msg}>{error}</div>}
-          {msg && <div className={styles.success_msg}>{msg}</div>}
+
           <button type="submit" className={styles.green_btn}>
-            Submit
+            Enviar email!
           </button>
         </form>
       </div>
     </Auth>
   );
-};
-
-export default ForgotPassword;
+}

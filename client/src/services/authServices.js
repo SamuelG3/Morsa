@@ -1,8 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-
 export const validateEmail = (email) => {
   return email.match(
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -54,6 +52,23 @@ export const loginUser = async (userData) => {
 export const logoutUser = async () => {
   try {
     await axios.get(`http://localhost:8080/users/logout`);
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
+
+// Forgot Password
+export const forgotPassword = async (userData) => {
+  try {
+    const response = await axios.post(
+      `http://localhost:8080/users/forgotpassword`,
+      userData
+    );
+    toast.success(response.data.message);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -120,4 +135,30 @@ export const updateUser = async (formData) => {
       error.toString();
     toast.error(message);
   }
+};
+
+// Update Password
+export const changePassword = async (formData) => {
+  try {
+    const response = await axios.patch(
+      `http://localhost:8080/users/changepassword`,
+      formData
+    );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
+
+// Delete user
+
+export const deleteUser = async (id) => {
+  const response = await axios.delete(
+    `http://localhost:8080/users/delete/` + id
+  );
+  return response.data;
 };

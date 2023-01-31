@@ -9,6 +9,7 @@ import {
   Modal,
   ModalHeader,
 } from "reactstrap";
+import ErrorMess from "../../atoms/ErrorMess";
 
 import UserMenu from "../../atoms/UserMenu";
 
@@ -67,7 +68,7 @@ function Header(args) {
               <NavItem>
                 <NavLink
                   className="d-flex justify-content-sm-end navLink"
-                  href="/"
+                  onClick={ErrorMess}
                 >
                   <i className="bi bi-bell col-3 "></i>
                 </NavLink>
@@ -76,7 +77,7 @@ function Header(args) {
               <NavItem>
                 <NavLink
                   className="d-flex justify-content-sm-end navLink"
-                  href="/"
+                  onClick={ErrorMess}
                 >
                   <i className="bi bi-question-circle col-3"></i>
                 </NavLink>

@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import ErrorMess from "../../atoms/ErrorMess";
 
 class AddMembers extends React.Component {
   constructor(props) {
@@ -71,7 +72,7 @@ class AddMembers extends React.Component {
             </form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
+            <Button color="primary" onClick={ErrorMess}>
               Convidar
             </Button>{" "}
           </ModalFooter>
