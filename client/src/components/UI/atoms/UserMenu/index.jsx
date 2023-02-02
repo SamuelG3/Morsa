@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./style.css";
+import { Container } from "./style.module";
 import {
   Dropdown,
   DropdownToggle,
@@ -52,31 +52,35 @@ export default function UserMenu({ direction, ...args }) {
   };
 
   return (
-    <div className="d-flex">
-      <Dropdown isOpen={dropdownOpen} onClick={toggle} direction={direction}>
-        <DropdownToggle color="none">
-          <div id="userMenu" className="navLink">
-            <span id="userName" className="sm-hide">
-              {name}{" "}
-            </span>
-            <UserPicture />
-          </div>
-        </DropdownToggle>
-        <DropdownMenu {...args} style={{ width: "280px" }}>
-          <DropdownItem header className="font-weight-bold mb-0">
-            <strong>{name}</strong>
-            <p>{profile?.email}</p>
-          </DropdownItem>
-          <DropdownItem href="/profile">Preferências da conta</DropdownItem>
+    <Container>
+      <div className="d-flex">
+        <Dropdown isOpen={dropdownOpen} onClick={toggle} direction={direction}>
+          <DropdownToggle color="none">
+            <div id="userMenu" className="navLink">
+              <span id="userName" className="sm-hide">
+                {name}{" "}
+              </span>
+              <UserPicture />
+            </div>
+          </DropdownToggle>
+          <DropdownMenu {...args} style={{ width: "280px" }}>
+            <DropdownItem header className="font-weight-bold mb-0">
+              <strong>{name}</strong>
+              <p>{profile?.email}</p>
+            </DropdownItem>
+            <DropdownItem href="/profile">Preferências da conta</DropdownItem>
 
-          <DropdownItem divider />
-          <DropdownItem onClick={ErrorMess}>Relatórios da empresa</DropdownItem>
-          <DropdownItem onClick={ErrorMess}>Trocar de empresa</DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem onClick={handleLogout}>Sair</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-    </div>
+            <DropdownItem divider />
+            <DropdownItem onClick={ErrorMess}>
+              Relatórios da empresa
+            </DropdownItem>
+            <DropdownItem onClick={ErrorMess}>Trocar de empresa</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem onClick={handleLogout}>Sair</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </div>
+    </Container>
   );
 }
 

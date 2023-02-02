@@ -1,6 +1,9 @@
+import styled from "styled-components";
 
+export const Container = styled.div`
   img {
     width: 40px;
+    height: 40px;
     margin-left: 5px;
   }
 
@@ -34,3 +37,4 @@
       display: none !important;
     }
   }
+`;

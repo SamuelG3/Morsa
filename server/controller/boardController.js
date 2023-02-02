@@ -1,14 +1,33 @@
 const asyncHandler = require("express-async-handler");
 const Board = require("../models/boardModel");
 
-// Criar Boards
+// Create Boards
 const createBoard = asyncHandler(async (req, res) => {
-  console.log("Criando Board...");
+  const { title, icon, colorScheme } = req.body;
+
+  if (!title || !icon || !colorScheme) {
+    res.status(400);
+    throw new Error("Please fill in all fields");
+  }
+
+  // Cria um novo Board
+  const board = await Board.create({
+    title,
+    icon,
+    colorScheme,
+  });
+
+  res.status(201).json(board);
 });
 
 // Visualizar todos os boards
 const getAllBoards = asyncHandler(async (req, res) => {
-  console.log("Visualizando todos os boards...");
+  try {
+    const board = await Board.find();
+    res.status(200).send(board);
+  } catch {
+    res.status(500).send({ message: "error" });
+  }
 });
 
 module.exports = {

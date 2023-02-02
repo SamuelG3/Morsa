@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../../redux/features/auth/authSlice";
-import { updateUser } from "../../../services/authServices";
+import { removePhoto, updateUser } from "../../../services/authServices";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -15,6 +15,7 @@ import UserPicture from "../../UI/atoms/UserPicture";
 
 const UserPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const { email } = user;
 
@@ -83,6 +84,18 @@ const UserPage = () => {
     }
   };
 
+  const delPhoto = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await removePhoto();
+      console.log(data);
+      toast.success("Sua foto foi alterada!");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -103,7 +116,7 @@ const UserPage = () => {
                 <div className="d-flex mr-3">
                   <div className="d-flex flex-column justify-content-center">
                     <UserPicture />
-                    <a title="Remover" href="/users/remove_avatar">
+                    <a title="Remover" onClick={delPhoto}>
                       Remover
                     </a>
                   </div>

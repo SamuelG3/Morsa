@@ -6,14 +6,8 @@ const boardSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    icon: { type: String, required: true },
-    colors: {
-      color1: { type: "string", required: true },
-      color2: { type: "string", required: true },
-      color3: { type: "string", required: true },
-      color4: { type: "string", required: true },
-      color5: { type: "string", required: true },
-    },
+    icon: { type: String },
+    colorScheme: { type: String },
     lists: [
       {
         type: mongoose.Schema.Types.ObjectId,

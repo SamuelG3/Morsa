@@ -10,8 +10,8 @@ import CommLetter from "./svg-icons/communication-letter-memo-svgrepo-com.svg";
 // Importing React Components
 import Header from "../../UI/organisms/Header";
 import { Container } from "./styles.module";
-import AddCard from "../../UI/molecules/AddCard";
-import KanbanCard from "../../UI/molecules/KanbanCard";
+import AddCard from "../../UI/molecules/AddBoard";
+import KanbanCard from "../../UI/molecules/BoardCard";
 import UserPicture from "../../UI/atoms/UserPicture";
 
 // Importing Data

@@ -154,6 +154,22 @@ export const changePassword = async (formData) => {
   }
 };
 
+// Remove Photo
+export const removePhoto = async () => {
+  try {
+    const response = await axios.patch(
+      `http://localhost:8080/users/removephoto/`
+    );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
+
 // Delete user
 
 export const deleteUser = async (id) => {

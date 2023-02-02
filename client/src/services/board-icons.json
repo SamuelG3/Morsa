@@ -1,0 +1,28 @@
+{
+  "icons": [
+    {
+      "icon": "bi bi-back"
+    },
+    {
+      "icon": "bi bi-puzzle"
+    },
+    {
+      "icon": "bi bi-send-check-fill"
+    },
+    {
+      "icon": "bi bi-shop"
+    },
+    {
+      "icon": "bi bi-steam"
+    },
+    {
+      "icon": "bi bi-ticket-perforated-fill"
+    },
+    {
+      "icon": "bi bi-train-freight-front-fill"
+    },
+    {
+      "icon": "bi bi-trello"
+    }
+  ]
+}

@@ -7,6 +7,7 @@ const {
   getAll,
   getUser,
   updateUser,
+  removePhoto,
   changePassword,
   forgotPassword,
   loginStatus,
@@ -22,6 +23,7 @@ router.get("/all", getAll);
 router.get("/loggedin", loginStatus);
 router.get("/getUser", protect, getUser);
 router.patch("/updateuser", protect, updateUser);
+router.delete("/removephoto/:id", protect, removePhoto);
 router.patch("/changepassword", protect, changePassword);
 router.delete("/delete/:id", deleteUser);
 

@@ -73,6 +73,16 @@ export const Container = styled.div`
     margin-right: 2rem;
     position: relative;
     cursor: pointer;
+
+    #icon {
+      background-color: orange;
+      padding: 5px;
+      border-radius: 17px;
+    }
+  }
+
+  .boardCard a {
+    text-decoration: none;
   }
 
   .itemCard i {
@@ -89,7 +99,7 @@ export const Container = styled.div`
 
   #numeroDeCardsNoPipe {
     font-size: 0.7rem;
-    font-weight: bold;
+    color: gray;
   }
 
   .itemCard:hover {

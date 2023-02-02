@@ -7,7 +7,6 @@ import { deleteUser, getAllUsers } from "../../../../services/authServices";
 
 import { Container } from "./styles.module";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function Index() {
   const dispatch = useDispatch();

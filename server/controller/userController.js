@@ -53,7 +53,7 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    const { _id, name, email, photo, phone, bio } = user;
+    const { _id, name, email, photo } = user;
     res.status(201).json({
       _id,
       name,
@@ -191,7 +191,24 @@ const updateUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error("User not found");
+    throw new Error("Usuário não encontrado...");
+  }
+});
+
+//Remove User Photo
+const removePhoto = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.photo = "https://i.ibb.co/4pDNDk1/avatar.png";
+    const updatedUser = await user.save();
+    res.status(200).json({
+      _id: updatedUser._id,
+      photo: updatedUser.photo,
+    });
+  } else {
+    res.status(404);
+    throw new Error("Usuário não encontrado...");
   }
 });
 
@@ -293,11 +310,6 @@ const deleteUser = asyncHandler(async (req, res) => {
     throw new Error("Usuário não encontrado...");
   }
 
-  // Usuário precisa ser administrador para a alteração
-  /* if (req.user.id !== "admin") {
-    throw new Error("Você não tem permissão de fazer esta ação...");
-  } */
-
   await user.remove();
   res.status(200).json({ user });
 });
@@ -310,6 +322,7 @@ module.exports = {
   getAll,
   getUser,
   updateUser,
+  removePhoto,
   changePassword,
   forgotPassword,
   deleteUser,

@@ -1,6 +1,6 @@
 import React from "react";
 
-import AddCardProcess from "../AddCardProcess";
+import AddCardProcess from "../../molecules/AddCard";
 
 import Card from "../Card";
 
