@@ -10,15 +10,15 @@ import CommLetter from "./svg-icons/communication-letter-memo-svgrepo-com.svg";
 // Importing React Components
 import Header from "../../UI/organisms/Header";
 import { Container } from "./styles.module";
-import AddCard from "../../UI/molecules/AddBoard";
-import KanbanCard from "../../UI/molecules/BoardCard";
 import UserPicture from "../../UI/atoms/UserPicture";
+import ErrorMess from "../../UI/atoms/ErrorMess";
 
 // Importing Data
 import greetings from "../../../services/greeting";
 
 import { selectName } from "../../../redux/features/auth/authSlice";
-import ErrorMess from "../../UI/atoms/ErrorMess";
+import BoardList from "../../UI/organisms/BoardList";
+
 
 //Exporting Page
 export default function UserHome() {
@@ -99,11 +99,7 @@ export default function UserHome() {
             <h3 className="font-weight-bold">Pipes</h3>
           </div>
 
-          <div id="Pipes" className="mt-4 d-flex">
-            <AddCard />
-
-            <KanbanCard />
-          </div>
+          <BoardList />
         </div>
       </Container>
     </>

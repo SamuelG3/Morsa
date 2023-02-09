@@ -36,7 +36,7 @@ export default function Index() {
   const [people, setPeople] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/users/all")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/all`)
       .then((response) => response.json())
       .then((data) => setPeople(data));
   }, []);

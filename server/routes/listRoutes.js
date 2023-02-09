@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const listController = require("../controllers/listController");
+const {
+  createList,
+  getAllLists,
+  updateListTitle,
+  deleteList,
+} = require("../controller/listController");
 
-router.put("/:boardId/:listId/update-title", listController.updateListTitle);
-router.post("/create", listController.create);
-router.get("/get/:id", listController.getAll);
-router.delete("/:boardId/:listId", listController.deleteById);
-router.post("/change-card-order", listController.updateCardOrder);
-router.post("/change-list-order", listController.updateListOrder);
+router.post("/create/:boardId", createList);
+router.get("/get/:boardId", getAllLists);
+router.delete("/delete/:boardId/:listId", deleteList);
+router.put("/update-title/:boardId/:listId", updateListTitle);
 
 module.exports = router;

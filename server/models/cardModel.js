@@ -9,60 +9,15 @@ const cardSchema = mongoose.Schema({
     type: String,
     default: "",
   },
-  labels: [
-    {
-      text: {
-        type: String,
-      },
-      color: {
-        type: String,
-      },
-      backColor: {
-        type: String,
-      },
-      selected: {
-        type: Boolean,
-      },
-    },
-  ],
-
-  date: {
-    _id: false,
-    startDate: {
-      type: Date,
-    },
-    dueDate: {
-      type: Date,
-    },
-    dueTime: {
-      type: String,
-    },
-    reminder: {
-      type: Boolean,
-    },
-    completed: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  attachments: [
-    {
-      link: {
-        type: String,
-      },
-      name: {
-        type: String,
-        default: null,
-      },
-      date: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  ],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "list",
+    required: true,
+  },
+  labels: [],
+  user: { type: String, ref: "user" },
+  position: {
+    type: Number,
   },
 });
 

@@ -1,38 +1,39 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
+import ErrorMess from "../../atoms/ErrorMess";
 
 export default function HomeHeader() {
   return (
-    <div class="container">
-      <header class="d-flex flex-wrap justify-content-center align-items-center py-3 border-bottom">
+    <div className="container">
+      <header className="d-flex flex-wrap justify-content-center align-items-center py-3 border-bottom">
         <Link
-          to="/"
-          class="d-flex mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
+          onClick={ErrorMess}
+          className="d-flex mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
         >
-          <h1 id="NavbarBrand" class="mx-auto">
+          <h1 id="NavbarBrand" className="mx-auto">
             Morsa
           </h1>
         </Link>
 
-        <ul class="nav nav-pills align-items-center">
-          <li class="nav-item mx-auto">
-            <Link to="/product" class="nav-link">
+        <ul className="nav nav-pills align-items-center">
+          <li className="nav-item mx-auto">
+            <Link onClick={ErrorMess} className="nav-link">
               Features
             </Link>
           </li>
-          <li class="nav-item mx-auto">
-            <Link to="/pricing" class="nav-link">
+          <li className="nav-item mx-auto">
+            <Link onClick={ErrorMess} className="nav-link">
               Preços
             </Link>
           </li>
-          <li class="nav-item mx-auto">
-            <Link to="/faq" class="nav-link">
+          <li className="nav-item mx-auto">
+            <Link onClick={ErrorMess} className="nav-link">
               FAQ
             </Link>
           </li>
-          <li class="nav-item mx-auto">
-            <Link to="/login" class="nav-link special-btn" aria-current="page">
+          <li className="nav-item mx-auto">
+            <Link to="/login" className="nav-link special-btn" aria-current="page">
               Já tem uma conta?
             </Link>
           </li>

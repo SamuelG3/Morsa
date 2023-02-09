@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function ChangePassword() {
-  // Constructor para o modal!
+ 
   // Modal open state
   const [modal, setModal] = React.useState(false);
 

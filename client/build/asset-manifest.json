@@ -1,19 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.8bbb4e23.css",
-    "main.js": "/static/js/main.21093b11.js",
-    "static/media/undraw_profile.png": "/static/media/undraw_profile.e23a0196473c7529e89e.png",
+    "main.css": "/static/css/main.f64bec8f.css",
+    "main.js": "/static/js/main.900a2fa8.js",
+    "static/media/User4.jpg": "/static/media/User4.238ac1c4821ec7fde185.jpg",
+    "static/media/User3.jpg": "/static/media/User3.069eec28b7ecc88f38f1.jpg",
+    "static/media/User2.jpg": "/static/media/User2.5ee177d67b8157dc1445.jpg",
+    "static/media/User1.jpg": "/static/media/User1.b4f874cf20c1b619981c.jpg",
     "static/media/Design stats-amico.svg": "/static/media/Design stats-amico.c9fbdf36b401f33f75e9358c4ea8f887.svg",
     "static/media/earth-2.png": "/static/media/earth-2.efc984d878fab08c5a70.png",
     "static/media/chart-growth-invest-svgrepo-com.svg": "/static/media/chart-growth-invest-svgrepo-com.0464ab2a79556641ce5e8d7331edd414.svg",
     "static/media/communication-letter-memo-svgrepo-com.svg": "/static/media/communication-letter-memo-svgrepo-com.8f09078afb9fdc5500196480a298a010.svg",
     "static/media/chart-diagram-pie-svgrepo-com.svg": "/static/media/chart-diagram-pie-svgrepo-com.783a7a2eec2b53bfcb19d95defed3ded.svg",
     "index.html": "/index.html",
-    "main.8bbb4e23.css.map": "/static/css/main.8bbb4e23.css.map",
-    "main.21093b11.js.map": "/static/js/main.21093b11.js.map"
+    "main.f64bec8f.css.map": "/static/css/main.f64bec8f.css.map",
+    "main.900a2fa8.js.map": "/static/js/main.900a2fa8.js.map"
   },
   "entrypoints": [
-    "static/css/main.8bbb4e23.css",
-    "static/js/main.21093b11.js"
+    "static/css/main.f64bec8f.css",
+    "static/js/main.900a2fa8.js"
   ]
 }

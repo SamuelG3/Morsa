@@ -5,6 +5,10 @@ const listSchema = mongoose.Schema({
     type: String,
     require: true,
   },
+  creatable: {
+    type: boolean,
+    require: true,
+  },
   cards: [
     {
       type: mongoose.Schema.Types.ObjectId,

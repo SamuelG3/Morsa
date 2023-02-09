@@ -7,7 +7,7 @@ const createBoard = asyncHandler(async (req, res) => {
 
   if (!title || !icon || !colorScheme) {
     res.status(400);
-    throw new Error("Please fill in all fields");
+    throw new Error("Por favor, preencha todos os campos...");
   }
 
   // Cria um novo Board

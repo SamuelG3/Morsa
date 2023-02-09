@@ -39,7 +39,7 @@ const Signup = () => {
       return toast.error("Por favor, coloque um email válido...");
     }
     if (password !== password2) {
-      return toast.error("Passwords do not match");
+      return toast.error("As senhas não combinam...");
     }
 
     const userData = {
@@ -50,7 +50,7 @@ const Signup = () => {
 
     try {
       const data = await registerUser(userData);
-      /* console.log(data); */
+
       await dispatch(SET_LOGIN(true));
       await dispatch(SET_NAME(data.name));
       navigate("/organization/:userId");

@@ -10,6 +10,8 @@
     "axios": "^0.24.0",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
+    "dotenv": "^16.0.3",
+    "env-cmd": "^10.1.0",
     "formik": "^2.2.9",
     "immer": "^9.0.16",
     "prop-types": "^15.8.1",
@@ -25,6 +27,7 @@
     "react-toastify": "^9.1.1",
     "reactstrap": "^9.1.5",
     "redux": "^4.2.0",
+    "sass": "^1.58.0",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.2"
   },

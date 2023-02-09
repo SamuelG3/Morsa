@@ -11,7 +11,7 @@ export const validateEmail = (email) => {
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/users/register`,
+      `${process.env.REACT_APP_BACKEND_URL}/users/register`,
       userData,
       { withCredentials: true }
     );
@@ -32,7 +32,7 @@ export const registerUser = async (userData) => {
 export const loginUser = async (userData) => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/users/login`,
+      `${process.env.REACT_APP_BACKEND_URL}/users/login`,
       userData
     );
     if (response.statusText === "OK") {
@@ -51,7 +51,7 @@ export const loginUser = async (userData) => {
 // Logout User
 export const logoutUser = async () => {
   try {
-    await axios.get(`http://localhost:8080/users/logout`);
+    await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/logout`);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -65,7 +65,7 @@ export const logoutUser = async () => {
 export const forgotPassword = async (userData) => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/users/forgotpassword`,
+      `${process.env.REACT_APP_BACKEND_URL}/users/forgotpassword`,
       userData
     );
     toast.success(response.data.message);
@@ -81,7 +81,9 @@ export const forgotPassword = async (userData) => {
 // Get All Users
 export const getAllUsers = async () => {
   try {
-    const response = await axios.get(`http://localhost:8080/users/all`);
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/users/all`
+    );
     return response.data;
   } catch (error) {
     const message =
@@ -95,7 +97,9 @@ export const getAllUsers = async () => {
 // Get User Profile
 export const getUser = async () => {
   try {
-    const response = await axios.get(`http://localhost:8080/users/getuser`);
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/users/getuser`
+    );
     return response.data;
   } catch (error) {
     const message =
@@ -109,7 +113,9 @@ export const getUser = async () => {
 // Get Login Status
 export const getLoginStatus = async () => {
   try {
-    const response = await axios.get(`http://localhost:8080/users/loggedin`);
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/users/loggedin`
+    );
     return response.data;
   } catch (error) {
     const message =
@@ -124,7 +130,7 @@ export const getLoginStatus = async () => {
 export const updateUser = async (formData) => {
   try {
     const response = await axios.patch(
-      `http://localhost:8080/users/updateuser`,
+      `${process.env.REACT_APP_BACKEND_URL}/users/updateuser`,
       formData
     );
     return response.data;
@@ -141,7 +147,7 @@ export const updateUser = async (formData) => {
 export const changePassword = async (formData) => {
   try {
     const response = await axios.patch(
-      `http://localhost:8080/users/changepassword`,
+      `${process.env.REACT_APP_BACKEND_URL}/users/changepassword`,
       formData
     );
     return response.data;
@@ -158,7 +164,7 @@ export const changePassword = async (formData) => {
 export const removePhoto = async () => {
   try {
     const response = await axios.patch(
-      `http://localhost:8080/users/removephoto/`
+      `${process.env.REACT_APP_BACKEND_URL}/users/removephoto/`
     );
     return response.data;
   } catch (error) {
@@ -174,7 +180,7 @@ export const removePhoto = async () => {
 
 export const deleteUser = async (id) => {
   const response = await axios.delete(
-    `http://localhost:8080/users/delete/` + id
+    `${process.env.REACT_APP_BACKEND_URL}/users/delete/` + id
   );
   return response.data;
 };

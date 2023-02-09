@@ -1,7 +1,6 @@
 import { useEffect, useState, Fragment } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-/* import success from "../../images/success.png"; */
 import styles from "./styles.module.css";
 
 const Reset = () => {
@@ -11,7 +10,7 @@ const Reset = () => {
   useEffect(() => {
     const verifyEmailUrl = async () => {
       try {
-        const url = `http://localhost:8080/api/users/${param.id}/verify/${param.token}`;
+        const url = `${process.env.REACT_APP_BACKEND_URL}/users/${param.id}/verify/${param.token}`;
         const { data } = await axios.get(url);
         console.log(data);
         setValidUrl(true);
@@ -27,8 +26,7 @@ const Reset = () => {
     <Fragment>
       {validUrl ? (
         <div className={styles.container}>
-          {/*  <img src={success} alt="success_img" className={styles.success_img} /> */}
-          <h1>Email verified successfully</h1>
+          <h1>Email verificado com sucesso!</h1>
           <Link to="/login">
             <button className={styles.green_btn}>Login</button>
           </Link>

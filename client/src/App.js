@@ -1,8 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-// Styles
-import GlobalStyle from "./styles/global";
-import { Fonts } from "./styles/fonts";
+import "./styles/global.css";
 
 // Dependencies
 import axios from "axios";
@@ -38,7 +36,6 @@ function App() {
     }
     loginStatus();
   }, [dispatch]);
-
   return (
     <>
       <ToastContainer />
@@ -48,14 +45,12 @@ function App() {
         <Route path="/login" exact element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:resetToken" element={<Reset />} />
-        <Route path="/kanban" exact element={<Kanban />} />
+        <Route path="/kanban/:id" exact element={<Kanban />} />
         <Route path="/members" exact element={<Members />} />
         <Route path="/profile" exact element={<Profile />} />
         <Route path="/edit-profile" exact element={<UserPage />} />
         <Route path="/organization/:userId" exact element={<UserHome />} />
       </Routes>
-      <GlobalStyle />
-      <Fonts />
     </>
   );
 }

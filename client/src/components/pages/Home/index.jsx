@@ -7,6 +7,7 @@ import Empresa3 from "../../../images/fake-logos/logotype/black/earth-2.png";
 import Empresa4 from "../../../images/fake-logos/logotype/black/muzica-2.png";
 import Visitor from "../../templates/Visitor";
 import Parceiros from "../../UI/molecules/Parceiros";
+import ErrorMess from "../../UI/atoms/ErrorMess";
 
 export default function Home() {
   return (
@@ -36,12 +37,14 @@ export default function Home() {
                 <button
                   type="button"
                   className="btn button-type-1 button-type-1-style btn-lg"
+                  onClick={ErrorMess}
                 >
                   Solicite uma demonstração
                 </button>
                 <button
                   type="button"
                   className="btn button-type-1 btn-lg me-md-2"
+                  onClick={ErrorMess}
                 >
                   Comece Já
                 </button>
@@ -50,10 +53,10 @@ export default function Home() {
           </div>
         </div>
 
-        <article class="parcerias-article mb-8 py-8">
+        <article className="parcerias-article mb-8 py-8">
           <div>
             <p>Recomendado por:</p>
-            <ul class="pb-5">
+            <ul className="pb-5">
               <li>
                 <img src={Empresa1} alt="Logo falso de uma empresa 1" />
               </li>
@@ -81,12 +84,14 @@ export default function Home() {
                 <button
                   type="button"
                   className="btn button-type-1 button-type-1-style"
+                  onClick={ErrorMess}
                 >
                   Fale com um especialista
                 </button>
                 <button
                   type="button"
                   className="btn button-type-1 me-md-2 py-2"
+                  onClick={ErrorMess}
                 >
                   Teste grátis
                 </button>
